@@ -670,7 +670,8 @@ where
 
     pub fn put_in_fsk_mode(&mut self) -> Result<(), Error<E, CS::Error, RESET::Error>> {
         // Put in FSK mode
-        let op_mode: &mut u8 = 0x0
+        let mut op_mode = 0x0u8;
+        let op_mode: &mut u8 = op_mode
             .set_bit(7, false)  // FSK mode
             .set_bits(5..6, 0x00)   // FSK modulation
             .set_bit(3, false)  //Low freq registers
@@ -684,7 +685,8 @@ where
         modulation_shaping: FskDataModulationShaping,
         ramp: FskRampUpRamDown
     ) -> Result<(), Error<E, CS::Error, RESET::Error>> {
-        let pa_ramp: &mut u8 = 0x0
+        let mut pa_ramp = 0x0u8;
+        let pa_ramp = pa_ramp
             .set_bits(5..6, modulation_shaping as u8)
             .set_bits(0..3, ramp as u8);
 
